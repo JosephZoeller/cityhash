@@ -24,7 +24,7 @@ func (this *City64) Sum(b []byte) []byte {
 }
 
 func (this *City64) Sum64() uint64 {
-	return CityHash64(this.s, uint32(len(this.s)))
+	return CityHash64(this.s)
 }
 
 func (this *City64) Reset() {
