@@ -942,17 +942,11 @@ func check(expected, actual uint64, t *testing.T) {
 }
 
 func test(expected []uint64, offset int, length int, t *testing.T) {
-	var u Uint128 = CityHash128(data[offset : offset+length])
-	var v Uint128 = CityHash128WithSeed(data[offset:offset+length], kSeed128)
 
 	check(expected[0], CityHash64(data[offset:offset+length]), t)
 	check(expected[15], uint64(CityHash32(data[offset:offset+length])), t)
 	check(expected[1], CityHash64WithSeed(data[offset:offset+length], kSeed0), t)
 	check(expected[2], CityHash64WithSeeds(data[offset:offset+length], kSeed0, kSeed1), t)
-	check(expected[3], u.Lower64(), t)
-	check(expected[4], u.Higher64(), t)
-	check(expected[5], v.Lower64(), t)
-	check(expected[6], v.Higher64(), t)
 }
 
 func TestHash(t *testing.T) {
