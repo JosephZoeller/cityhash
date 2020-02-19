@@ -113,7 +113,7 @@ func rotate64(val uint64, shift uint32) uint64 {
 	return val
 }
 
-func rotateByAtLeast1(val uint64, shift int) uint64 {
+func rotateByAtLeast1(val uint64, shift uint) uint64 {
 	return (val >> shift) | (val << (64 - shift))
 }
 
@@ -332,7 +332,7 @@ func hashLen0to16(s []byte, offset int) uint64 {
 	if length > 8 {
 		var a uint64 = fetch64(s, offset)
 		var b uint64 = fetch64(s, offset+length-8)
-		return hashLen16(a, rotateByAtLeast1(b+uint64(length), int(length))) ^ b
+		return hashLen16(a, rotateByAtLeast1(b+uint64(length), uint(length))) ^ b
 	}
 
 	if length >= 4 {
